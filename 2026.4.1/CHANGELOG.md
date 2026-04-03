@@ -31,6 +31,25 @@
 
 ---
 
+## 📁 ไฟล์ในโฟลเดอร์
+
+| ไฟล์ | คำอธิบาย |
+|------|----------|
+| `config.json` | Config จริงที่ใช้งาน (sensitive values ถูก redact) |
+| `config.example.json` | Template สำหรับตั้งค่าใหม่ - มีคอมเมนต์อธิบายทุก field |
+| `CHANGELOG.md` | บันทึกการเปลี่ยนแปลง |
+
+### วิธีใช้ config.example.json
+
+1. Copy `config.example.json` เป็น `config.json`
+2. แทนที่ค่า `แทนที่ด้วย...` ด้วยค่าจริงของคุณ
+3. ใช้คำสั่ง:
+   ```bash
+   openclaw config apply --file config.json
+   ```
+
+---
+
 ## 📊 โครงสร้าง Config แบบคร่าว
 
 ```
