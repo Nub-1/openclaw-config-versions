@@ -12,6 +12,23 @@
 
 ---
 
+## 🔒 ความปลอดภัย
+
+**⚠️ ทุก config ใน repo นี้ได้รับการ sanitize แล้ว:**
+
+| ประเภท | สถานะ |
+|--------|--------|
+| Bot Tokens (Telegram, Discord, LINE) | ✅ REDACTED |
+| API Keys / Secrets | ✅ REDACTED |
+| Channel Access Tokens | ✅ REDACTED |
+| User/Chat IDs (allowFrom) | ✅ REDACTED |
+| Server URLs (IP ภายใน) | ✅ REDACTED |
+| Gateway Tokens | ✅ REDACTED |
+
+**ห้ามใช้ config ใน repo นี้โดยตรง!** — ต้องเอา config จริงจาก `openclaw config get`
+
+---
+
 ## 📂 โครงสร้าง
 
 ```
@@ -42,18 +59,69 @@ cat 2026.4.1/CHANGELOG.md
 diff 2026.4.0/config.json 2026.4.1/config.json
 ```
 
-### 3. ตรวจสอบ config ที่ใช้อยู่
+### 3. ตรวจสอบ config ที่ใช้อยู่ (จริง)
 
 ```bash
-openclaw config get | jq
+# ดู config ที่ใช้อยู่
+openclaw config get
+
+# ดู config แบบรวม secrets (ใช้ด้วยความระวัง!)
+openclaw config get --include-secrets
 ```
 
 ---
 
-## ⚠️ หมายเหตุ
+## 📋 โครงสร้าง Config v2026.4.1
 
-- **Sensitive values** เช่น `botToken`, `apiKey`, `channelAccessToken` จะถูกแทนด้วย `__OPENCLAW_REDACTED__`
-- **วิธีดู config จริง** ใช้ `openclaw config get --include-secrets`
+```
+config.json
+├── meta                          # Version metadata
+├── wizard                        # Setup wizard state
+├── agents.defaults               # Agent defaults
+│   ├── model
+│   ├── contextPruning
+│   ├── compaction
+│   ├── timeoutSeconds            ⚠️ เพิ่มจาก 60 → 600
+│   ├── heartbeat
+│   ├── sandbox
+│   ├── maxConcurrent             🆕 เพิ่มใหม่
+│   └── subagents.maxConcurrent   🆕 เพิ่มใหม่
+├── commands
+├── channels                      # Telegram, Discord, LINE
+│   ├── telegram
+│   ├── discord
+│   └── line
+├── gateway
+│   ├── mode
+│   ├── bind
+│   ├── controlUi
+│   └── auth
+├── plugins.entries
+│   ├── unraidclaw
+│   ├── line
+│   └── minimax
+├── tools
+│   ├── profile
+│   ├── elevated
+│   └── exec
+└── messages                      🆕 เพิ่มใหม่
+    └── ackReactionScope
+```
+
+---
+
+## ⚠️ หมายเหตุสำคัญ
+
+### LINE Plugin (v2026.4.1)
+**ปัญหา:** exports ขัดแย้งกับ plugin-sdk ใหม่
+
+| Export เดิม | แก้เป็น |
+|-------------|----------|
+| `isSenderAllowed` | `checkLineSenderAllowed` |
+| `normalizeAllowFrom` | `normalizeLineAllowFrom` |
+| `downloadLineMedia` | `getLineMediaContent` |
+
+**วิธีแก้:** ปิด LINE plugin ชั่วคราว หรือรอ fix จากทีม
 
 ---
 

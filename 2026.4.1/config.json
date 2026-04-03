@@ -43,12 +43,12 @@
       "enabled": true,
       "dmPolicy": "allowlist",
       "botToken": "__OPENCLAW_REDACTED__",
-      "allowFrom": ["1941976453"],
+      "allowFrom": ["__OPENCLAW_REDACTED__"],
       "groupPolicy": "allowlist",
       "streaming": "off",
       "execApprovals": {
         "enabled": false,
-        "approvers": ["1941976453"]
+        "approvers": ["__OPENCLAW_REDACTED__"]
       }
     },
     "discord": {
@@ -61,7 +61,7 @@
       "groupPolicy": "allowlist",
       "streaming": "off",
       "dmPolicy": "allowlist",
-      "allowFrom": ["216562036245659658"]
+      "allowFrom": ["__OPENCLAW_REDACTED__"]
     },
     "line": {
       "enabled": true,
@@ -69,7 +69,7 @@
       "channelSecret": "__OPENCLAW_REDACTED__",
       "dmPolicy": "allowlist",
       "groupPolicy": "allowlist",
-      "allowFrom": ["Ud0cb74a3f09cf568909f01af88425e18"]
+      "allowFrom": ["__OPENCLAW_REDACTED__"]
     }
   },
   "gateway": {
@@ -78,8 +78,7 @@
     "controlUi": {
       "allowedOrigins": [
         "http://localhost:18789",
-        "http://127.0.0.1:18789",
-        "http://192.168.1.133:18701"
+        "http://127.0.0.1:18789"
       ],
       "dangerouslyAllowHostHeaderOriginFallback": false,
       "allowInsecureAuth": false
@@ -98,7 +97,7 @@
       "unraidclaw": {
         "enabled": true,
         "config": {
-          "serverUrl": "https://192.168.1.133:9876",
+          "serverUrl": "__OPENCLAW_REDACTED__",
           "apiKey": "__OPENCLAW_REDACTED__",
           "tlsSkipVerify": true
         }
@@ -118,7 +117,7 @@
     "elevated": {
       "enabled": true,
       "allowFrom": {
-        "telegram": ["1941976453"]
+        "telegram": ["__OPENCLAW_REDACTED__"]
       }
     },
     "exec": {
