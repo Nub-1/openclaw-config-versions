@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.4.1",
+    "lastTouchedAt": "2026-04-02T08:20:00.000Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-05T12:46:19.556Z",
+    "lastRunVersion": "2026.3.1-beta.1",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "agents": {
+    "defaults": {
+      "model": "minimax/MiniMax-M2.7",
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "ttl": "1h"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "timeoutSeconds": 600,
+      "heartbeat": {
+        "every": "30m"
+      },
+      "sandbox": {
+        "mode": "off"
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "botToken": "__OPENCLAW_REDACTED__",
+      "allowFrom": ["1941976453"],
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "execApprovals": {
+        "enabled": false,
+        "approvers": ["1941976453"]
+      }
+    },
+    "discord": {
+      "enabled": true,
+      "token": {
+        "source": "env",
+        "provider": "default",
+        "id": "__OPENCLAW_REDACTED__"
+      },
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "dmPolicy": "allowlist",
+      "allowFrom": ["216562036245659658"]
+    },
+    "line": {
+      "enabled": true,
+      "channelAccessToken": "__OPENCLAW_REDACTED__",
+      "channelSecret": "__OPENCLAW_REDACTED__",
+      "dmPolicy": "allowlist",
+      "groupPolicy": "allowlist",
+      "allowFrom": ["Ud0cb74a3f09cf568909f01af88425e18"]
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789",
+        "http://192.168.1.133:18701"
+      ],
+      "dangerouslyAllowHostHeaderOriginFallback": false,
+      "allowInsecureAuth": false
+    },
+    "auth": {
+      "mode": "token",
+      "rateLimit": {
+        "maxAttempts": 10,
+        "windowMs": 60000,
+        "lockoutMs": 300000
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "unraidclaw": {
+        "enabled": true,
+        "config": {
+          "serverUrl": "https://192.168.1.133:9876",
+          "apiKey": "__OPENCLAW_REDACTED__",
+          "tlsSkipVerify": true
+        }
+      },
+      "line": {
+        "enabled": true,
+        "config": {}
+      },
+      "minimax": {
+        "enabled": true,
+        "config": {}
+      }
+    }
+  },
+  "tools": {
+    "profile": "full",
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "telegram": ["1941976453"]
+      }
+    },
+    "exec": {
+      "security": "full",
+      "ask": "off"
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  }
+}
